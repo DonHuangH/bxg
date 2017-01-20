@@ -3,7 +3,8 @@ define([
     'jquery',
     'template'
 ], function($,template) {
-    
+    var teacherList = $('#teacherList');
+    var teacherModal = $('#teacherModal');
     // 发送请求获取数据
     // /api http://api.botue.com
     $.ajax({
@@ -16,7 +17,12 @@ define([
             // template('tpl',{list: info.result});
 			var html = template('teacherTpl', {list: info.result});
             // 添加DOM
-            $('#teacherList').html(html);
+            teacherList.html(html);
         }
+    });
+
+    // 处理模态框
+    teacherList.on('click','.preview',function(){
+        teacherModal.modal();
     })
 });
